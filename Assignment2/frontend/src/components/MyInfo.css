@@ -1,0 +1,28 @@
+h1{
+    color:black;
+    font-size: 100px;
+}
+input:active{
+    border: green 2px solid !important;
+}
+input:focus{
+    border: green 2px solid !important;
+}
+input{
+    height:50px;
+    width:70%
+}
+h3,p,h2,h5{
+    margin: 0;
+}
+.submit-button{
+    background-color: green;
+    color:white;
+    border:green 1px solid;
+    height:40px;
+    width:80px
+}
+.submit-button:hover{
+    color: green;
+    background-color: white;
+}
