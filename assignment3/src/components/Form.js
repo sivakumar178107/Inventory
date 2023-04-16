@@ -17,7 +17,6 @@ function Form() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append('itemName', itemName);
     formData.append('itemQuantity', itemQuantity);

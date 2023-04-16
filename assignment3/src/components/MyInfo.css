@@ -16,13 +16,15 @@ h3,p,h2,h5{
     margin: 0;
 }
 .submit-button{
-    background-color: green;
-    color:white;
+ 
     border:green 1px solid;
     height:40px;
-    width:80px
-}
-.submit-button:hover{
+    width:80px;
+    cursor: pointer;
     color: green;
     background-color: white;
+}
+.submit-button:hover{
+    background-color: green;
+    color:white;
 }

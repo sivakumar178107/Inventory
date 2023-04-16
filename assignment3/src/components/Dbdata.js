@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Form from './Form';
 function Dbdata() {
  let updateform=false;
@@ -11,15 +11,21 @@ function Dbdata() {
   const [updateImage,setupdateImage]=useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/items')
+    const intervalId = setInterval(() => {
+      fetch('http://localhost:3001/api/items')
       .then((response) => response.json())
       .then((data) => setItems(data))
       .catch((error) => console.log(error));
-      console.log("hey",items)
-      if(items.length==0){
-        alert("Inventory is empty")
-      }
+      
+    }, 5000);
+    if(items.length==0){
+      alert("Inventory is empty")
+    }
+    return () => clearInterval(intervalId);
+   
+      
   }, []);
+  
 // Update an item by id
 const handleInputChange = (event) => {
     if (event.target.name === 'itemName') {
@@ -42,11 +48,22 @@ const handleInputChange = (event) => {
         quantity: updateQuantity,
       }),
     });
-
+  
     if (response.ok) {
       console.log('Item updated successfully');
     } else {
       console.error('Error updating item:', response.status);
+    }
+  }
+  const handleDelete = async(id)=>{
+    const response= await fetch(`http://localhost:3001/api/items/${id}`,{
+      method:'DELETE'
+    })
+    if(response.ok){
+      console.log("deleted successfully")
+    }
+    else{
+      console.log("error",response.status)
     }
   }
 //   const handleSubmit = async (event) => {
@@ -81,6 +98,7 @@ const handleInputChange = (event) => {
         <input type="number" name="itemQuantity" value={updateQuantity} onChange={handleInputChange} />
       </label>
       <button type="submit">Update Item</button>
+      
     </form>
     </div>
     </div>
@@ -92,7 +110,8 @@ const handleInputChange = (event) => {
             <th>Item Name</th>
             <th>Item Quantity</th>
             <th>Item Image</th>
-            <th>Action</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -105,6 +124,7 @@ const handleInputChange = (event) => {
               </td>
               <td><button onClick={()=>{updateform=!updateform;setupdateID(item._id);setupdateName(item.itemName);setupdateQuantity(item.itemQuantity);console.log(updateform)}}>
                 <FontAwesomeIcon icon={faPen}/></button></td>
+                <td><button onClick={()=>{setupdateID(item._id);setupdateName(item.itemName);setupdateQuantity(item.itemQuantity);handleDelete(item._id)}}><FontAwesomeIcon icon={faTrash}/></button></td>
             </tr>
           ))}
         </tbody>

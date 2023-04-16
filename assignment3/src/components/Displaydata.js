@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+import './Display.css';
 function Thirdapidata() {
   const [data, setData] = useState([]);
-
+  const [sport,setSport]=useState('cricket')
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=cricket&Timezone=-7', {
+      const response = await fetch(`https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=${sport}&Timezone=-7`, {
         method: 'GET',
         headers: {
           'X-RapidAPI-Key': '1092a1038cmsh47d0c27efe6d5b0p15c5a9jsn5da6f180a7eb',
@@ -17,10 +17,20 @@ function Thirdapidata() {
       setData(result.Stages);
     };
     fetchData();
-  }, []);
+  }, [sport]);
 
   return (
     <div style={{padding:"20px 0px"}}>
+      <div style={{display:'flex',justifyContent:'center',alignItems:"center"
+    }}>
+        <ul id='ul'>
+          <li id='li' onClick={()=>setSport('cricket')}>cricket</li>
+          <li id='li' onClick={()=>setSport('football')}>football</li>
+          <li id='li' onClick={()=>setSport('basketball')}>basketball</li>
+          <li id='li' onClick={()=>setSport('soccer')}>soccer</li>
+        </ul>
+      </div>
+      <h2>{sport} Data</h2>
       <table>
         <thead>
           <tr>

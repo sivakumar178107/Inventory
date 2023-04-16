@@ -21,7 +21,7 @@ nav{
   .nav-link {
     margin: 0 10px;
     padding: 10px;
-    border-bottom: 2px solid transparent;
+  
     cursor: pointer;
   }
   a{
@@ -29,11 +29,9 @@ nav{
     color: white;
   }
   .nav-link:hover {
-    border-bottom: 2px solid #fff;
+   border-bottom: 2px solid white;
   }
-  
-  
-  
+ 
   .tab-content {
     display: none;
     margin-top: 20px;

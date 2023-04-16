@@ -27,7 +27,7 @@ function MyInfo(){
     return(<>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"10px",width:"100%",flexDirection:"column"}}>
         
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",width:"100%",gap:"5px",flexDirection:"row",padding:"20px",background:"rgb(173 110 118 / 96%)",color:"white"}}>
+        <div style={{display:"flex",justifyContent:"space-between",boxShadow:'rgba(0, 0, 0, 0.24) 0px 3px 8px',alignItems:"flex-start",minWidth:"94%",gap:"5px",flexDirection:"row",margin:'20px',padding:"20px",background:"rgb(173 110 118 / 96%)",color:"white"}}>
             <img src={image} style={{maxWidth:"200px",maxHeight:"200px"}}/>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",width:"100%",gap:"5px",flexDirection:"column",padding:"10px",}}>
             <h2>{name}</h2>
